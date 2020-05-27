@@ -157,13 +157,15 @@ public class Graphics extends JFrame implements ActionListener {
                 if (procedemos) {
                     PrintWriter pw = null;
                     try {
-                        pw = new PrintWriter(new FileWriter(f.getPath(), false));
+                        pw = new PrintWriter(new FileWriter(f.getPath(), true));
                         pw.println(numero.getText());
                     } catch (IOException err) {
                         JOptionPane.showMessageDialog(this, "No se ha podido guardar el documento.", "Error escritura",
                                 JOptionPane.ERROR_MESSAGE);
                     } finally {
-                        pw.close();
+                        if (pw != null) {
+                            pw.close();
+                        }
                     }
 
                 }
@@ -192,7 +194,7 @@ public class Graphics extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == mnReset) {
-            //Si, si, molaba una funcion pero encuentrala despues en este pedazo de biblia.
+            // Si, si, molaba una funcion pero encuentrala despues en este pedazo de biblia.
             for (int i = 0; i < botones.size(); i++) {
                 botones.get(i).setBackground(new JButton().getBackground());
                 botones.get(i).clickeao = false;
@@ -201,21 +203,21 @@ public class Graphics extends JFrame implements ActionListener {
             numero.setText(numMarcado);
         }
 
-        if(e.getSource() == mnSalir){
+        if (e.getSource() == mnSalir) {
             System.exit(0);
         }
 
-        if(e.getSource()==mnAcerca){
-            String leeloSiHayHuevos = "El programa ha sido obra de la malvada mente de Curro,\n un profesor de programacion querido y odiado por sus alumnos a partes iguales. \n"+
-            "El autor, por otra parte, es Raúl; alma pura donde las haya\n ha luchado contra viento y marea para sacarlo adelante.\n No le fue facil y en su viaje hizo muchos amigos y enemigos.\n"+
-            "Cuando creyo estar cerca el malvado profesor, y con esto me adelanto a la historia,\n le dijo (como si fuese la maldad encarnada) \"No me vale que guardes solo un numero\"\n"+
-            "Y nuestro valeroso estudiante tuvo que volver a emprender la aventura\nabandonando el calido abrazo de sus seres queridos, de su madre, de una compañera, de su gata...\n Con una lagrima en su corazon.\n"+
-            "No es posible imaginar esta hazaña sin comprender el despiadado numero de veces que Curro\n hace retomar un programa porque \"Falla identacion\" o \"Hay que documentarlo\"\n"+
-            "Tengan todos en cuenta la hazaña que esto supone y recen, recen por Raúl";
+        if (e.getSource() == mnAcerca) {
+            String leeloSiHayHuevos = "El programa ha sido obra de la malvada mente de Curro,\n un profesor de programacion querido y odiado por sus alumnos a partes iguales. \n"
+                    + "El autor, por otra parte, es Raúl; alma pura donde las haya\n ha luchado contra viento y marea para sacarlo adelante.\n No le fue facil y en su viaje hizo muchos amigos y enemigos.\n"
+                    + "Cuando creyo estar cerca el malvado profesor, y con esto me adelanto a la historia,\n le dijo (como si fuese la maldad encarnada) \"No me vale que guardes solo un numero\"\n"
+                    + "Y nuestro valeroso estudiante tuvo que volver a emprender la aventura\nabandonando el calido abrazo de sus seres queridos, de su madre, de una compañera, de su gata...\n Con una lagrima en su corazon.\n"
+                    + "No es posible imaginar esta hazaña sin comprender el despiadado numero de veces que Curro\n hace retomar un programa porque \"Falla identacion\" o \"Hay que documentarlo\"\n"
+                    + "Tengan todos en cuenta la hazaña que esto supone y recen, recen por Raúl";
 
             Icon icono = new ImageIcon(getClass().getResource("raul.png"));
-            
-            JOptionPane.showMessageDialog(null,leeloSiHayHuevos, "Acerca de...", JOptionPane.PLAIN_MESSAGE, icono);
+
+            JOptionPane.showMessageDialog(null, leeloSiHayHuevos, "Acerca de...", JOptionPane.PLAIN_MESSAGE, icono);
         }
     }
 
